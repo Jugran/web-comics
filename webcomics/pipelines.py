@@ -45,6 +45,7 @@ class ImagePipeline(ImagesPipeline):
         # print(item['name'], 'downloaded: ', results)
 
         item['filename'] = results[0][1]['path']
+        item['image_url'] = results[0][1]['url']
 
         # TODO: image post processing
 

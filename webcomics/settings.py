@@ -14,8 +14,25 @@ BOT_NAME = 'webcomics'
 SPIDER_MODULES = ['webcomics.spiders']
 NEWSPIDER_MODULE = 'webcomics.spiders'
 
+DOWNLOAD_DELAY = 0.5
 
-FEEDS = 
+FEEDS = {
+    'items.json': {
+        'format': 'json',
+        'encoding': 'utf8',
+        'store_empty': False,
+        'fields': None,
+        'indent': 4,
+    },
+}
+
+ITEM_PIPELINES = {
+    'webcomics.pipelines.ImagePipeline': 1
+}
+IMAGES_URLS_FIELD = 'image_url'
+IMAGES_RESULT_FIELD = 'filename'
+IMAGES_STORE = 'images'
+IMAGES_EXPIRES = 7
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'webcomics (+http://www.yourdomain.com)'
