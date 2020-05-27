@@ -6,6 +6,29 @@ from urllib.parse import urlparse
 from scrapy.exceptions import DropItem
 from scrapy.pipelines.images import ImagesPipeline
 
+
+class ImagePipeline(ImagesPipeline):
+
+    # def file_path(self, request, response=None, info=None):
+    #     print(info)
+    #     return os.path.basename(urlparse(request.url).path)
+
+    
+    def get_media_requests(self, item, info):
+        for image_url in item['image_url']:
+            yield scrapy.Request(image_url)
+
+    def item_completed(self, results, item, info):
+        # print(item['name'], 'downloaded: ', results)
+
+        item['filename'] = results[0][1]['path']
+        item['image_url'] = results[0][1]['url']
+
+        # TODO: image post processing
+
+        return item
+
+'''
 class ImageDownloadPipeline:
     image_folder = 'images'
 
@@ -29,25 +52,5 @@ class ImageDownloadPipeline:
         item['filename'] = os.path.join(comic_folder, item['title'])
         # save file
         return item
-
-class ImagePipeline(ImagesPipeline):
-
-    # def file_path(self, request, response=None, info=None):
-    #     print(info)
-    #     return os.path.basename(urlparse(request.url).path)
-
-    
-    def get_media_requests(self, item, info):
-        for image_url in item['image_url']:
-            yield scrapy.Request(image_url)
-
-    def item_completed(self, results, item, info):
-        # print(item['name'], 'downloaded: ', results)
-
-        item['filename'] = results[0][1]['path']
-        item['image_url'] = results[0][1]['url']
-
-        # TODO: image post processing
-
-        return item
+        '''
 

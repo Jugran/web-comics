@@ -15,6 +15,7 @@ SPIDER_MODULES = ['webcomics.spiders']
 NEWSPIDER_MODULE = 'webcomics.spiders'
 
 DOWNLOAD_DELAY = 0.5
+CONCURRENT_REQUESTS_PER_DOMAIN = 16
 
 FEEDS = {
     'items.json': {
@@ -30,7 +31,7 @@ ITEM_PIPELINES = {
     'webcomics.pipelines.ImagePipeline': 1
 }
 IMAGES_URLS_FIELD = 'image_url'
-IMAGES_RESULT_FIELD = 'filename'
+# IMAGES_RESULT_FIELD = 'filename'
 IMAGES_STORE = 'images'
 IMAGES_EXPIRES = 7
 

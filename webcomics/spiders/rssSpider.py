@@ -19,7 +19,8 @@ class RssSpider(XMLFeedSpider):
     )
 
     def start_requests(self):
-        urls = ['https://xkcd.com/rss.xml', 'http://www.berkeleymews.com/feed/']
+        urls = ['https://xkcd.com/rss.xml', 'http://www.berkeleymews.com/feed/', 'http://jamesofnotrades.com/feed', 
+        'http://loadingartist.com/feed/']
 
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)
@@ -56,7 +57,6 @@ class RssSpider(XMLFeedSpider):
             img_url = re.sub(r'-\d\d\dx\d\d\d', '', img_url)
 
         comic['image_url'] = [img_url]
-        # comic['filename'] = [img_url.split('/')[-1]]
 
         return comic
 
