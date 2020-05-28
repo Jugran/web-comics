@@ -113,3 +113,6 @@ images/
 
 .vscode/
 
+# logs
+
+log.txt
