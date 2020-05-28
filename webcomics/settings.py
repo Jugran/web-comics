@@ -14,22 +14,30 @@ BOT_NAME = 'webcomics'
 SPIDER_MODULES = ['webcomics.spiders']
 NEWSPIDER_MODULE = 'webcomics.spiders'
 
-DOWNLOAD_DELAY = 0.5
+DOWNLOAD_DELAY = 0.2
 CONCURRENT_REQUESTS_PER_DOMAIN = 16
 
-FEEDS = {
-    'items.json': {
-        'format': 'json',
-        'encoding': 'utf8',
-        'store_empty': False,
-        'fields': None,
-        'indent': 4,
-    },
-}
+# FEEDS = {
+#     'items.json': {
+#         'format': 'json',
+#         'encoding': 'utf8',
+#         'store_empty': False,
+#         'fields': None,
+#         'indent': 4,
+#     },
+# }
+
+CONNECTION_DB_URI = 'sqlite:///comics.db'
 
 ITEM_PIPELINES = {
-    'webcomics.pipelines.ImagePipeline': 1
+    'webcomics.pipelines.ComicDatabasePipeline' : 300
 }
+
+
+# ITEM_PIPELINES = {
+#     'webcomics.pipelines.ImagePipeline': 1
+# }
+
 IMAGES_URLS_FIELD = 'image_url'
 # IMAGES_RESULT_FIELD = 'filename'
 IMAGES_STORE = 'images'

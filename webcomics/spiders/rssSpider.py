@@ -56,8 +56,8 @@ class RssSpider(XMLFeedSpider):
         else:
             img_url = re.sub(r'-\d\d\dx\d\d\d', '', img_url)
 
-        comic['image_url'] = [img_url]
-
+        comic['image_url'] = img_url
+        # comic['image_url'] = [img_url]
         return comic
 
 

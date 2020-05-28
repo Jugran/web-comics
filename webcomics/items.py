@@ -10,8 +10,8 @@ class Comic(scrapy.Item):
     description = scrapy.Field()
     filename = scrapy.Field()
 
-class Source(scrapy.Item):
-    name = scrapy.Field()
-    url = scrapy.Field()
-    feed_url = scrapy.Field()
-    iter_tag = scrapy.Field()
+# class Source(scrapy.Item):
+#     name = scrapy.Field()
+#     url = scrapy.Field()
+#     feed_url = scrapy.Field()
+#     iter_tag = scrapy.Field()
