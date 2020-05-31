@@ -1,6 +1,23 @@
 {% extends "base.html" %} {% block content %}
 
+{# <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script> 
+
+   function viewComic(comic){
+      $.post("{{ url_for('viewer.comic') }}", {"comic.id": comic.id} );  //Your values here..
+   } #}
+
+</script>
+
 <h1 class="title">
   Feeds should appear here!
 </h1>
+  {% for comic in comics %}
+    <div id="comics-thumbnail">
+      <h1>{{ comic.title }}</h1>
+        <a href="{{ url_for('viewer.comic', id=comic.id) }}">          
+          <img src="{{comic.image_url}}" alt="{{ comic.description }}" width=400px>
+        </a>
+    </div>
+  {% endfor %}
 {% endblock %}

@@ -2,24 +2,31 @@
 from flask import Blueprint, render_template, redirect, url_for, request
 from flask_login import current_user, login_required
 
+from scraper.comics import Comics
+
 feed = Blueprint('feed', __name__, url_prefix='/feed')
 
 # feed will show all latest subscribed comics
-
+comic_feed = Comics()
 
 @feed.route('/')
 @login_required
 def index():
-    return render_template('comics/index.html')
+    return render_template('comics/index.html', comics=comic_feed.get(start=0))
 
 
 viewer = Blueprint('viewer', __name__)
 
+# @viewer.route('/comic', endpoint='comic')
+# @login_required
+# def image_viewer_get():
+#     return "invalid get request"
 
-@viewer.route('/comic', methods=['POST'])
+@viewer.route('/comic/<int:id>', endpoint='comic')
 @login_required
-def image_viewer():
-    return render_template('comics/viewer.html')
+def image_viewer(id):
+    index = comic_feed.get_index(id=id)
+    return render_template('comics/viewer.html', comics=comic_feed.get(start=index))
 
 
 @viewer.route('/next', methods=['POST'])

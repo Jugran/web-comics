@@ -1,13 +1,12 @@
 
 from sqlalchemy.orm import sessionmaker
-from models import connect_db, Comic
 
-from settings import CONNECTION_DB_URI
+from scraper.models import connect_db, Comic
+from scraper.settings import CONNECTION_DB_URI
 
 class Comics:
     ''' list of comic items 
     '''
-
     def __init__(self, DATABASE_URI=CONNECTION_DB_URI):
         engine = connect_db(DATABASE_URI)
         
@@ -36,10 +35,10 @@ class Comics:
 
     def __len__(self):
         return self.count + 1
-
+    
     def load(self, n=50):
         ''' loads n (default 50) number of comics from database
-        '''
+        ''' 
         session = self.session()
 
         query = session.query(Comic).order_by(Comic.id.desc())
@@ -51,11 +50,22 @@ class Comics:
             self.items += new_items
 
         session.close()
-
     
-    def get(self, n=10):
+    def get_index(self, id):
+        ''' returns index of comic with id
+        '''
+        for i, item in enumerate(self.items):
+            if item.id == id:
+                return i
+        
+        raise ValueError
+    
+    def get(self, n=10, start=None):
         ''' returns next n number of comic items
         '''
+        if start is not None:
+            self.index = start - 1
+
         end = self.index + n + 1
 
         if self.index == self.count:

@@ -112,6 +112,7 @@ images/
 # vscode
 
 .vscode/
+*.code-workspace
 
 # logs
 
