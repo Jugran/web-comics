@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+
+{% block head %}
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,6 +12,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"
     />
   </head>
+{% endblock %}
 
   <body>
     <section class="hero is-primary is-fullheight">
@@ -28,7 +31,7 @@
                 <a href="{{ url_for('auth.logout') }}" class="navbar-item">
                   Logout
                 </a>               
-               {% else %}
+                {% else %}
                 <a href="{{ url_for('main') }}" class="navbar-item">
                   Home
                 </a>

@@ -6,7 +6,8 @@
   background-size: 100%, 100%;
   border-radius: 50%;
   border: 1px solid black;
-  background-image: none;
+  /* background-image: none; */
+  background-color: red;
 }
 
 .carousel-control-next-icon:after

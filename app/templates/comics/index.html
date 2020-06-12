@@ -1,23 +1,52 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} 
+
+{% block head %}
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Web Comics</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    {# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"/> #}
+
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='viewer.css') }}"/>
+
+  </head>
+
+{% endblock %}
+
+{% block content %}
 
 {# <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script> 
 
    function viewComic(comic){
       $.post("{{ url_for('viewer.comic') }}", {"comic.id": comic.id} );  //Your values here..
-   } #}
+   }
 
-</script>
+</script> #}
 
 <h1 class="title">
-  Feeds should appear here!
+  Latest comics
 </h1>
+
+<div id="comic-feed-container" class="card-columns">
+{# <div id="comic-feed-container" class="d-flex flex-wrap" style="justify-content-md-between"> #}
+
   {% for comic in comics %}
-    <div id="comics-thumbnail">
-      <h1>{{ comic.title }}</h1>
-        <a href="{{ url_for('viewer.comic', id=comic.id) }}">          
-          <img src="{{comic.image_url}}" alt="{{ comic.description }}" width=400px>
-        </a>
-    </div>
-  {% endfor %}
+    <div id="comics-thumbnail" class="card" >
+
+      <img class="card-img-top" src="{{comic.image_url}}" alt="{{ comic.description }}">
+
+      <div class="card-body">
+      
+        <h5 class="card-title">{{ comic.title }}</h5>
+        <p class="card-text">{{ comic.description }}</p>
+ 
+      <a href="{{ url_for('viewer.comic', id=comic.id) }}" class="stretched-link"></a>
+      </div>
+
+  </div>
+{% endfor %}
+
 {% endblock %}
