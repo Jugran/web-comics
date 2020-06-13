@@ -1,0 +1,69 @@
+{% extends "base.html" %} 
+
+{% block head %}
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Home Feed</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='viewer.css') }}"/>
+
+    <script src="{{ url_for('static', filename='viewer.js') }}"></script>
+
+  </head>
+
+{% endblock %}
+
+{% block content %}
+
+<section class="hero is-danger">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Latest Comics
+      </h1>
+      <h2 class="subtitle">
+        From rss feed.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div id="comic-feed-container" class="container">
+    
+    <div class="columns">
+      {% for comic in comics %}
+
+      <!-- set limit of comics per row -->
+      {% if loop.index % max_columns == 0 %} 
+        </div>
+        <div class="columns">
+      {% endif %}
+
+      <div class="column">
+        <div id="comics-thumbnail" class="card" >
+
+          <div class="card-image">
+            <img src="{{comic.image_url}}" alt="{{ comic.description }}">
+          </div>
+
+          <div class="card-content">
+            <div class="content">
+              <h3 class="card-title">{{ comic.title }}</h3>
+              <p class="card-text">{{ comic.description }}</p>
+            </div>
+
+          <a href="{{ url_for('viewer.comic', id=comic.id) }}" class="stretched-link"></a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+  </div>
+  </div>
+</section>
+
+
+{% endblock %}
