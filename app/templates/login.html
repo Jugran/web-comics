@@ -1,38 +1,46 @@
 {% extends "base.html" %}
 
+{% block head %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Web Comics</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://getbootstrap.com/docs/4.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <!-- Custom styles for this template -->
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/cover.css') }}"/>
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/signin.css') }}"/>
+</head>
+{% endblock %}
+
+
 {% block content %}
-<div class="column is-4 is-offset-4">
-    <h3 class="title">Login</h3>
-    <div class="box">
+<div class="container">
+    <form class="form-signin" method="POST" action="/login">
+        <h1 class="h3 mb-3 font-weight-normal">Log-in</h1>
 
         {% with messages = get_flashed_messages() %}
             {% if messages %}
-                    <div class="notification is-danger">
-                        {{ messages[0] }}
-                    </div>
 
+                <div class="alert alert-warning" role="alert">
+                     {{ messages[0] }}
+                </div>
             {% endif %}
         {% endwith %}
-        <form method="POST" action="/login">
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="text" name="username" placeholder="Your Username" autofocus="" required>
-                </div>
-            </div>
 
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="password" name="password" placeholder="Your Password" required>
-                </div>
-            </div>
-            <div class="field">
-                <label class="checkbox">
-                    <input type="checkbox", value="remember">
-                    Remember me
-                </label>
-            </div>
-            <button class="button is-block is-info is-large is-fullwidth">Login</button>
-        </form>
-    </div>
+        <label for="username" class="sr-only">Username</label>
+        <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="password" class="form-control" placeholder="Password" required>
+
+        <div class="custom-control custom-checkbox mb-3 text-left">
+            <input type="checkbox" class="custom-control-input" id="rememberMe" value="remember">
+            <label class="custom-control-label" for="rememberMe">Remember me</label>
+        </div>
+
+        <button class="btn btn-lg btn-outline-light btn-block" type="submit">login</button>
+    </form>
 </div>
 {% endblock %}

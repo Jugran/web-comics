@@ -1,22 +1,31 @@
-{% extends "base.html" %} 
+<!doctype html>
+<html lang="en">
 
-{% block head %}
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Home Feed</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='viewer.css') }}"/>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Comics Feed</title>
+  <!-- Bootstrap core CSS -->
+  <link href="https://getbootstrap.com/docs/4.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <script src="{{ url_for('static', filename='viewer.js') }}"></script>
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/viewer.css') }}"/>
 
-  </head>
+  <script src="{{ url_for('static', filename='javascript/viewer.js') }}"></script>
 
-{% endblock %}
+</head>
 
-{% block content %}
+
+<body>
+ <div class="container">
+ 
+ </div>
+
+</body>
+</html>
+
+
+
 
 <section class="hero is-danger">
   <div class="hero-body">
