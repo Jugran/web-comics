@@ -1,6 +1,10 @@
-{% extends "base.html" %} {% block content %}
+{% extends "comics/base.html" %} 
 
-<h1 class="title">
-  Welcome, {{ current_user.username }}!
-</h1>
+{% block content %}
+<div class="container bg-info text-light text-center">
+    <h1 class="display-3">
+        Welcome, {{ current_user.username }}!
+    </h1>
+</div>
+
 {% endblock %}
