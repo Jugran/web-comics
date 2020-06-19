@@ -1,6 +1,6 @@
 var modal = document.getElementById('image-viewer');
 
-var imgs = document.getElementsByClassName('thumbnail');
+var imgs = document.getElementsByClassName('card-img-top');
 
 var modalImage = document.getElementById('modal-image');
 var caption = document.getElementById('caption');
@@ -10,27 +10,27 @@ for (img of imgs){
         console.log('open image modal');
         
         // disable page scrolling
-        document.getElementsByTagName('html')[0].classList.add('is-clipped');
+        document.getElementsByTagName('html')[0].classList.add('overflow-hidden');
        
         //make modal visible
-        modal.className = modal.className + ' is-active';
+        modal.classList.add('d-flex');
         modalImage.src = this.src;
-        caption.innerText = this.alt;
+        // caption.innerText = this.alt;
 
         // enable blur
-        document.getElementById('body-container').classList.add('blur');
+        document.getElementById('comic-container').classList.add('blur');
     }
 }
 
 // close function
 
 function closeModal(){
-    modal.className = 'modal';
-    document.getElementsByTagName('html')[0].classList.remove('is-clipped');
+    modal.classList.remove('d-flex');
+    document.getElementsByTagName('html')[0].classList.remove('overflow-hidden');
     console.log('close');
 
     // disable blur
-    document.getElementById('body-container').classList.remove('blur');
+    document.getElementById('comic-container').classList.remove('blur');
 }
 
 document.getElementById('close-button').onclick = closeModal;

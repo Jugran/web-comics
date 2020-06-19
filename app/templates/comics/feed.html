@@ -2,7 +2,7 @@
 
 
 {% block content %}
-<div class="comic-container container">
+<div class="comic-container container" id="comic-container">
     <div class="jumbotron text-left p-3">
         <h1 class="display-4">
             Latest Comics
@@ -16,16 +16,31 @@
         {% for comic in comics %}
         <div id="comics-thumbnail" class="card">
 
-            <img src=" {{comic.image_url}}" class="card-img-top" alt="{{ comic.description }}">
+            <img src="{{comic.image_url}}" id="{{ comic.id }}" class="card-img-top" alt="{{ comic.description }}">
 
             <div class="card-body">
                 <h3 class="card-title">{{ comic.title }}</h3>
                 <p class="card-text">{{ comic.description }}</p>
 
-                <a href="{{ url_for('viewer.comic', id=comic.id) }}" class="stretched-link"></a>
+                <!-- <a href="{{ url_for('viewer.comic', id=comic.id) }}" class="stretched-link"></a> -->
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
+
+<div id="image-viewer" class="modal-viewer overflow-hidden">
+  <div id="modal-background" class="modal-background"></div>
+
+      <div class="modal-content-container overflow-hidden">   
+          <div class="d-flex align-items-center m-auto p-3 image">
+              <img id="modal-image" class="img-fluid">
+          </div>
+
+          <!-- Modal Caption (Image Text) -->
+          <!-- <div id="caption" class="caption is-overlay"></div> -->
+      </div>
+      <button id="close-button" class="modal-close is-large" aria-label="close"></button>
+</div>
+
 {% endblock %}

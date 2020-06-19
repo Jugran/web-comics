@@ -9,7 +9,7 @@ function setActiveNavLink(){
 
     var path = window.location.pathname;
 
-    if (path === '/'){
+    if (path === '/' || path === '/feed/'){
         // homepage
         document.getElementById('home').classList.add('active');
     }
@@ -17,7 +17,6 @@ function setActiveNavLink(){
         document.getElementById(path.substr(1)).classList.add('active');
     }
 }
-
 
 // function setActiveItem(){
 //     var currentActive = document.getElementsByClassName('active');

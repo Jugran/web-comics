@@ -31,13 +31,44 @@
   backdrop-filter: blur(0.8);
 } */
 
-.modal-background {
+.modal-viewer, .modal-background {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 1;
+}
+
+.modal-background {
   background-color: rgba(10, 10, 10, 0.7);
+}
+
+.modal-content-container{
+  margin: 0 20px;
+  max-height: calc(100vh - 160px);
+  overflow: auto;
+  position: relative;
+  width: 100%;
+}
+
+@media screen and (min-width: 769px), print {
+  .modal-content-container{
+    margin: 0 auto;
+    max-height: calc(100vh - 40px);
+    width: 640px;
+  }
+}
+
+
+.modal-viewer {
+  align-items: center;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  position: fixed;
+  z-index: 40;
 }
 
 .blur {
