@@ -1,46 +1,51 @@
-{% extends 'comics/base.html' %}
-
-
-{% block content %}
+{% extends 'comics/base.html' %} {% block content %}
 <div class="comic-container container" id="comic-container">
-    <div class="jumbotron text-left p-3">
-        <h1 class="display-4">
-            Latest Comics
-        </h1>
-        <h2 class="lead">
-            From rss feed.
-        </h2>
+  <div class="jumbotron text-left p-3">
+    <h1 class="display-4">
+      Latest Comics
+    </h1>
+    <h2 class="lead">
+      From rss feed.
+    </h2>
+  </div>
+
+  <div class="card-columns">
+    {% for comic in comics %}
+    <div id="comics-thumbnail" class="card">
+      <img
+        src="{{comic.image_url}}"
+        id="{{ comic.id }}"
+        class="card-img-top"
+        alt="{{ comic.description }}"
+      />
+
+      <div class="card-body">
+        <h3 class="card-title">{{ comic.title }}</h3>
+        <p class="card-text">{{ comic.description }}</p>
+
+        <!-- <a href="{{ url_for('viewer.comic', id=comic.id) }}" class="stretched-link"></a> -->
+      </div>
     </div>
-
-    <div class="card-columns">
-        {% for comic in comics %}
-        <div id="comics-thumbnail" class="card">
-
-            <img src="{{comic.image_url}}" id="{{ comic.id }}" class="card-img-top" alt="{{ comic.description }}">
-
-            <div class="card-body">
-                <h3 class="card-title">{{ comic.title }}</h3>
-                <p class="card-text">{{ comic.description }}</p>
-
-                <!-- <a href="{{ url_for('viewer.comic', id=comic.id) }}" class="stretched-link"></a> -->
-            </div>
-        </div>
-        {% endfor %}
-    </div>
+    {% endfor %}
+  </div>
 </div>
 
 <div id="image-viewer" class="modal-viewer overflow-hidden">
   <div id="modal-background" class="modal-background"></div>
 
-      <div class="modal-content-container overflow-hidden">   
-          <div class="d-flex align-items-center m-auto p-3 image">
-              <img id="modal-image" class="img-fluid">
-          </div>
+    <button id="close-button" type="button" class="close text-white" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
 
-          <!-- Modal Caption (Image Text) -->
-          <!-- <div id="caption" class="caption is-overlay"></div> -->
-      </div>
-      <button id="close-button" class="modal-close is-large" aria-label="close"></button>
+    <div class="modal-content-container m-auto p-3">
+        <div class="image-wrapper">
+        <img id="modal-image" class="img-fluid" />
+        </div>
+<!-- TODO: Add title/caption text/card in image modal-->
+        <!-- Modal Caption (Image Text) -->
+        <!-- <div id="caption" class="caption is-overlay"></div> -->
+        <p>heloloo wdeoa d </p>
+    </div>
+
+  {% endblock %}
 </div>
-
-{% endblock %}
