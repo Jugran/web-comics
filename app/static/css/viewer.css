@@ -26,16 +26,16 @@
 }
 
 .modal-content-container{
-  max-height: calc(100vh - 4rem);
+  max-height: calc(100vh - 40px);
   position: relative;
-  margin: 2.5rem 0 0 0 !important;
+  top: 2.5rem;
   width: 100%;
 }
 
 @media(min-width: 769px) {
   .modal-content-container{
-    margin: 0 auto !important;
-    max-height: calc(100vh - 7rem);
+    top: 1rem;
+    max-height: calc(100vh - 40px);
     width: 640px;
   }
 }
@@ -67,7 +67,7 @@
 
 .image-wrapper{
   position: relative;
-  max-height: 46rem;
+  max-height: 85%;
   width: 100%;
   margin-bottom: auto;
   overflow: auto;

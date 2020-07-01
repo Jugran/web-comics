@@ -13,7 +13,6 @@ def main():
     else:
         return render_template('index.html')
 
-
 @bp.route('/profile')
 @login_required
 def profile():

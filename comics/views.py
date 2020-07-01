@@ -14,6 +14,9 @@ comic_feed = Comics()
 def index():
     return render_template('comics/feed.html', comics=comic_feed.get(start=0), max_columns=8)
 
+@feed.route('/demo')
+def demo():
+    return render_template('comics/feed.html', comics=comic_feed.get(start=0), max_columns=8)
 
 viewer = Blueprint('viewer', __name__)
 
