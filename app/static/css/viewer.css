@@ -13,24 +13,6 @@
   overflow: hidden;
 }
 
-.flex-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-self: center;
-}
-
-/* .blur{
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(40, 40, 40, 0.8);
-  backdrop-filter: url(commonfilters.svg#filter);
-  backdrop-filter: blur(0.8);
-} */
-
 .modal-viewer, .modal-background {
   position: absolute;
   top: 0;
@@ -44,28 +26,19 @@
 }
 
 .modal-content-container{
-  max-height: calc(100vh - 160px);
-  overflow: hidden;
+  max-height: calc(100vh - 4rem);
   position: relative;
+  margin: 2.5rem 0 0 0 !important;
   width: 100%;
 }
 
 @media(min-width: 769px) {
   .modal-content-container{
-    margin: 0 auto;
-    max-height: calc(100vh - 40px);
+    margin: 0 auto !important;
+    max-height: calc(100vh - 7rem);
     width: 640px;
   }
 }
-
-@media(min-width: 769px) {
-  .modal-content-container{
-    margin: 0 auto;
-    max-height: calc(100vh - 40px);
-    width: 640px;
-  }
-}
-
 
 .modal-viewer {
   align-items: center;
@@ -86,48 +59,43 @@
   filter: blur(10px);
 }
 
-.blur-svg {
-  display: none;
-}
-
 .close{
   position: absolute;
   top: 1rem;
   right: 1rem;
 }
 
-
 .image-wrapper{
   position: relative;
-  max-height: 95%;
+  max-height: 46rem;
   width: 100%;
   margin-bottom: auto;
   overflow: auto;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE 10+ */
-
 }
+
 .image-wrapper::-webkit-scrollbar {
   width: 0px;
   background: transparent; /* make scrollbar transparent */
 }
 
-.image-wrapper > img{
-  position: relative;
-  vertical-align: bottom;
+@media(min-width: 769px) {
+  .image-wrapper{
+    max-height: 85%;
+  }
 }
 
-.caption {
-  position: relative;
-  margin: auto;
-  margin-top: 1rem;
-  display: block;
-  text-align: left;
-  color: #ccc;
-  padding: 10px 0;
-  height: 150px;
-  font-size: 2rem;
-  padding: 10px 10px 10px 10px;
+.comic-info{
+  bottom: 0;
+}
+
+@media(min-width: 769px) {
+  .comic-info{
+    position: relative;
+    float: left;
+    margin-left: 0.25rem;
+  }
 }
 
 /* @media only screen and (max-width: 700px){

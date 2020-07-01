@@ -16,7 +16,8 @@
         src="{{comic.image_url}}"
         id="{{ comic.id }}"
         class="card-img-top"
-        alt="{{ comic.description }}"
+        alt="{{ comic.title }}"
+        onclick="openModal(this)"
       />
 
       <div class="card-body">
@@ -31,20 +32,27 @@
 </div>
 
 <div id="image-viewer" class="modal-viewer overflow-hidden">
-  <div id="modal-background" class="modal-background"></div>
+  <div id="modal-background" class="modal-background" onclick="closeModal()"></div>
 
-    <button id="close-button" type="button" class="close text-white" aria-label="Close">
+    <button id="close-button" type="button" class="close text-white" aria-label="Close" onclick="closeModal()">
         <span aria-hidden="true">&times;</span>
     </button>
 
-    <div class="modal-content-container m-auto p-3">
+    <div class="modal-content-container m-auto p-sm-3">
         <div class="image-wrapper">
         <img id="modal-image" class="img-fluid" />
+        </div>
+
+        <div class="comic-info card text-white bg-info mb-3 mx-auto w-100">
+          <div id="comic-name" class="card-header"></div>
+          <div class="card-body">
+            <h5 id="comic-title" class="card-title"></h5>
+            <p id="comic-description"class="card-text"></p>
+          </div>
         </div>
 <!-- TODO: Add title/caption text/card in image modal-->
         <!-- Modal Caption (Image Text) -->
         <!-- <div id="caption" class="caption is-overlay"></div> -->
-        <p>heloloo wdeoa d </p>
     </div>
 
   {% endblock %}
