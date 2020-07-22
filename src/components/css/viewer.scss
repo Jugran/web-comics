@@ -1,0 +1,113 @@
+.thumbnail {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.thumbnail:hover {
+  transform: scale(1.15);
+}
+
+.thumbnail-container {
+  display: inline-block;
+  overflow: hidden;
+  align-items: center;
+  width: 100%;
+}
+
+.modal-viewer, .modal-background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.modal-background {
+  background-color: rgba(10, 10, 10, 0.7);
+}
+
+.modal-content-container{
+  max-height: 100vh;
+  position: relative;
+  top: 2.5rem;
+  width: 100%;
+}
+
+@media(min-width: 769px) {
+  .modal-content-container{
+    top: 1rem;
+    max-height: calc(100vh - 40px);
+    width: 640px;
+  }
+}
+@media(min-width: 992px) {
+  .modal-content-container{
+    top: 1rem;
+    max-height: calc(100vh - 20px);
+    width: 720px;
+  }
+}
+
+.modal-viewer {
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  position: fixed;
+  z-index: 99999 !important;
+}
+
+.blur {
+  /* filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3'); */
+  backdrop-filter: blur(10px);
+  /* -webkit-filter: url(#blur-filter);
+  filter: url(#blur-filter); */
+  -webkit-filter: blur(10px);
+  filter: blur(10px);
+}
+
+.close{
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.image-wrapper{
+  position: relative;
+  max-height: 70vh;
+  width: 100%;
+  margin-bottom: auto;
+  overflow: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.image-wrapper::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+
+.img-fluid{
+  width: 100%;
+}
+
+.comic-info{
+  bottom: 0;
+}
+
+@media(min-width: 992px) {
+  .comic-info{
+    float: left;
+    margin-left: 0.25rem;
+  }
+  .image-wrapper{
+    float: right;
+    max-height: 70vh;
+  }
+}
+
+/* @media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+ } */
