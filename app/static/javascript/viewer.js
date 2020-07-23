@@ -33,8 +33,6 @@ function closeModal(){
     document.getElementById('comic-container').classList.remove('blur');
 }
 
-// document.getElementById('close-button').onclick = closeModal;
-// document.getElementById('modal-background').onclick = closeModal;
 
 
 // Info card fucntion
@@ -51,8 +49,3 @@ function setImageCardInfo(img){
 
 }
 
-// var close = document.getElementById('close-button');
-
-// close.onclick = function(){
-//     modal.style.display = "none";
-// }

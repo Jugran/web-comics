@@ -3,11 +3,13 @@ from flask import Flask
 from flask_login import LoginManager
 
 from app.models import db
-
+from comics.jsonEncoder import ComicJSONEncoder
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object('settings')
+
+    app.json_encoder = ComicJSONEncoder
 
     register_database(app)
     register_blueprint(app)

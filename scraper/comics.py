@@ -35,7 +35,7 @@ class Comics:
 
     def __len__(self):
         return self.count + 1
-    
+
     def load(self, n=50):
         ''' loads n (default 50) number of comics from database
         ''' 
@@ -43,6 +43,8 @@ class Comics:
 
         query = session.query(Comic).order_by(Comic.id.desc())
         new_items = query.offset(self.count + 1).limit(n).all()
+
+        # new_items = self.as_dict(new_items)
 
         self.count += len(new_items)
 
@@ -79,6 +81,7 @@ class Comics:
             items = self.items[self.index + 1:]
             self.index = self.count
         
+        # return self.as_dict(items)
         return items
 
 

@@ -1,5 +1,5 @@
 
-from flask import Blueprint, render_template, redirect, url_for, request
+from flask import Blueprint, render_template, redirect, url_for, request, jsonify
 from flask_login import current_user, login_required
 
 from scraper.comics import Comics
@@ -17,6 +17,11 @@ def index():
 @feed.route('/demo')
 def demo():
     return render_template('comics/feed.html', comics=comic_feed.get(start=0), max_columns=8)
+
+@feed.route('/latest')
+def latest():
+    comics = comic_feed.get(start=0, n=50)
+    return jsonify({'comics': comics})
 
 viewer = Blueprint('viewer', __name__)
 
