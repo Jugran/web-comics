@@ -7,8 +7,8 @@ import Demo from './Demo'
 
 const Footer = () => {
     return (
-        <footer class="foot mt-auto">
-                <div class="inner">
+        <footer className="foot mt-auto">
+                <div className="inner">
                     <p>Made with <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://github.com/Jugran">@Jugran</a>.</p>
                 </div>
         </footer>

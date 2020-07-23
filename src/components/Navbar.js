@@ -4,12 +4,12 @@ import {Link, NavLink } from 'react-router-dom';
 
 const NavBar = () => {
     return (
-        <header class="head mb-auto">
-            <div class="inner">
+        <header className="head mb-auto">
+            <div className="inner">
                 <Link to="/">
-                    <h3 class="head-brand">Web Comics</h3>
+                    <h3 className="head-brand">Web Comics</h3>
                 </Link>
-                <nav class="nav nav-head justify-content-center" >
+                <nav className="nav nav-head justify-content-center" >
                     <NavLink className="nav-link" exact to="/">Home</NavLink>
                     <NavLink className="nav-link" to='/login'>Login</NavLink>
                     <NavLink className="nav-link" to='/signup'>Sign Up</NavLink>

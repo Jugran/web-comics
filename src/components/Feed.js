@@ -5,48 +5,29 @@ import ComicWall from './ComicWall'
 import TopNavbar from './TopNavbar'
 import ImageModal from './ImageModal'
 
-function get_comics() {
-    let comics = [{
-        name: "xkcd.com",
-        title: "Hamster Ball 2",
-        comic_url: "https://xkcd.com/2331/",
-        description: "The worst is being teased by responsible, mask-wearing teens. They even spritz the hamster ball with disinfectant before rolling it, carefully avoiding the filter vents.",
-        image_url: "https://imgs.xkcd.com/comics/hamster_ball_2.png"
-    },
-    {
-        name: "xkcd.com",
-        title: "Acceptable Risk",
-        comic_url: "https://xkcd.com/2330/",
-        description: "Good thing I'm not already prone to overthinking everyday decisions!",
-        image_url: "https://imgs.xkcd.com/comics/acceptable_risk.png"
-    },
-    {
-        name: "xkcd.com",
-        title: "Universal Rating Scale",
-        comic_url: "https://xkcd.com/2329/",
-        description: "There are plenty of finer gradations. I got 'critically endangered/extinct in the wild' on my exam, although the curve bumped it all the way up to 'venti.'",
-        image_url: "https://imgs.xkcd.com/comics/universal_rating_scale.png"
-    },
-    {
-        name: "xkcd.com",
-        title: "Space Basketball",
-        comic_url: "https://xkcd.com/2328/",
-        description: "My shooting will improve over the short term, but over the long term the universe will take more shots.",
-        image_url: "https://imgs.xkcd.com/comics/space_basketball.png"
-    }];
-
-    return comics;
-}
 
 class Feed extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            comics: get_comics(),
+            comics: [],
             displayImage: false,
             openedComic: null
-        }
+        }   
+    }
+
+    componentDidMount(){
+        fetch('/feed/latest')
+        .then(res => res.json())
+        .then(data => {
+            this.setState((prevState) => {
+                return {
+                    ...prevState,
+                    comics : data.comics
+                }
+            })
+        });
     }
 
     openModal = (comic) => {
