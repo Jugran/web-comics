@@ -1,9 +1,12 @@
 
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import ComicWall from './ComicWall'
 import TopNavbar from './TopNavbar'
 import ImageModal from './ImageModal'
+
+import fetchComics from '../actions/fetchComics'
 
 
 class Feed extends Component {
@@ -11,23 +14,13 @@ class Feed extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            comics: [],
             displayImage: false,
             openedComic: null
         }   
     }
 
     componentDidMount(){
-        fetch('/feed/latest')
-        .then(res => res.json())
-        .then(data => {
-            this.setState((prevState) => {
-                return {
-                    ...prevState,
-                    comics : data.comics
-                }
-            })
-        });
+        this.props.fetchComics();
     }
 
     openModal = (comic) => {
@@ -51,7 +44,7 @@ class Feed extends Component {
     }
 
     render() {
-        const comics = this.state.comics;
+        const comics = this.props.comics;
         const comicList = comics.length ? (<ComicWall comics={comics} openModal={this.openModal} />) :
             (<div className="container center">
                 Loading ...
@@ -74,6 +67,9 @@ class Feed extends Component {
                                 </h2>
                             </div>
                             {comicList}
+                            <div className="container mx-auto">
+                                <button className="btn warning">Load More</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -83,5 +79,16 @@ class Feed extends Component {
     }
 }
 
+const mapStateToProps = (state, ownProps) => {
+    return {
+        comics: state.comics
+    };
+}
 
-export default Feed;
+const mapDispatchToProps = (dispatch) => {
+    return{
+        fetchComics: () => fetchComics(dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Feed);
