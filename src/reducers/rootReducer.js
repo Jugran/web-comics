@@ -6,7 +6,7 @@ import comicFeedReducer from './comicFeedReducer'
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    comic: comicFeedReducer
+    feed: comicFeedReducer
 })
 
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import Navbar from '../home/Navbar'
@@ -28,11 +28,17 @@ class SignIn extends Component {
     
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log('signed in form: ', this.state);
+        // console.log('signed in form: ', this.state);
         this.props.signIn(this.state)
     }
 
     render() {
+
+        if ( this.props.is_authenticated ){
+            console.log('authenticated!')
+            return <Redirect to='/profile' />
+        }
+
         return (
             <div className="page-container signin-container">
                 <div className="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column text-center">
@@ -42,7 +48,7 @@ class SignIn extends Component {
                 
                         { this.props.alert ? (
                             <div className="alert alert-warning" role="alert">
-                                    { this.props.alert }. Go to <Link to='/signup'>login page</Link>.
+                                    { this.props.alert }
                             </div>
                         ) : (null) }
                 
@@ -69,7 +75,8 @@ class SignIn extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        alert: state.authError
+        alert: state.auth.authError,
+        is_authenticated: state.auth.is_authenticated
     };
 }
 

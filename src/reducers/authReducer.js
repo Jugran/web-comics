@@ -1,6 +1,7 @@
 const initialState = {
     user_id : null,
-    authError: null
+    authError: null,
+    is_authenticated: false
 }
 
 const authReducer = (state = initialState, action) => {
@@ -9,13 +10,15 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 user_id: action.data.user_id,
-                authError: null
+                authError: null,
+                is_authenticated: true
             }
         case 'LOGIN_FAILED':
             return {
                 ...state,
                 user_id: null,
-                authError: action.data.error
+                authError: action.data.error,
+                is_authenticated: false
             }
         default:
             return state

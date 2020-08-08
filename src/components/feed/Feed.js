@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 import ComicList from './ComicList'
 import TopNavbar from './TopNavbar'
@@ -44,6 +45,11 @@ class Feed extends Component {
     }
 
     render() {
+
+        if ( !this.props.is_authenticated ){
+            return <Redirect to='/login' />
+        }
+
         const comics = this.props.comics;
 
         const modalImage = this.state.displayImage ? (<ImageModal comic={this.state.openedComic} closeModal={this.closeModal} />) : (null);
@@ -79,7 +85,8 @@ class Feed extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        comics: state.comics
+        comics: state.feed.comics,
+        is_authenticated: state.auth.is_authenticated
     };
 }
 
