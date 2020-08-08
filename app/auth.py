@@ -1,42 +1,34 @@
 
-from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask import Blueprint, request, jsonify, abort
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
 
 from app.models import User, db
 
-bp = Blueprint('auth', __name__)
+bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 
 @bp.route('/logout')
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('main'))
-
-
-@bp.route('/login')
-def login():
-    return render_template('login.html')
-
-
-@bp.route('/signup')
-def signup():
-    return render_template('signup.html')
+    return jsonify({'success' : True, 'message': 'User logged out succesfully'}), 201
 
 
 @bp.route('/signup', methods=['POST'])
-def signup_post():
+def signup():
     # code to validate and add user to database goes here
 
-    username = request.form.get('username')
-    password = request.form.get('password')
+    username = request.json.get('username')
+    password = request.json.get('password')
+
+    if username is None or password is None:
+        abort(400) # missing arguments
 
     user = User.query.filter_by(username=username).first()
-
+    
     if user:
-        flash('User already registered!')
-        return redirect(url_for('auth.signup'))
+        return jsonify({'success': False, 'message' : 'username already registered'}), 400
 
     new_user = User(username=username,
                     password=generate_password_hash(password))
@@ -44,24 +36,22 @@ def signup_post():
     db.session.add(new_user)
     db.session.commit()
 
-    return redirect(url_for('auth.login'))
+    return jsonify({'success': True}), 201
 
 
 @bp.route('/login', methods=['POST'])
-def login_post():
-    username = request.form.get('username')
-    password = request.form.get('password')
-    remember = True if request.form.get('remember') else False
+def login():
+    username = request.json.get('username')
+    password = request.json.get('password')
+    remember = request.json.get('remember')
 
     if username is None or password is None:
-        flash('Enter Username and Password')
-        return redirect(url_for('auth.login'))
+        abort(400) # missing arguments
 
     user = User.query.filter_by(username=username).first()
 
     if not user or not check_password_hash(user.password, password):
-        flash('Login info incorrect')
-        return redirect(url_for('auth.login'))
+        abort(401)  # wrong credentials
 
     login_user(user, remember=remember)
-    return redirect(url_for('main.profile'))
+    return jsonify({'success': True, 'message': 'User Logged in!', 'data': {'user_id': user.id}}), 200
