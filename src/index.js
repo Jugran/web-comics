@@ -5,10 +5,10 @@ import * as serviceWorker from './serviceWorker';
 
 import { createStore } from 'redux';
 
-import comicFeedReducer from './reducers/comicFeed';
+import rootReducer from './reducers/rootReducer';
 import { Provider } from 'react-redux';
 
-const store = createStore(comicFeedReducer);
+const store = createStore(rootReducer);
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,3 +23,10 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+
+
+// Done: singin/ signup components
+// TODO: login reducer (loggedin: boolean, user_id: int)
+// TODO: combine reducer
+// TODO: authentication

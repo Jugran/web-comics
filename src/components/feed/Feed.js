@@ -2,11 +2,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import ComicWall from './ComicWall'
+import ComicList from './ComicList'
 import TopNavbar from './TopNavbar'
 import ImageModal from './ImageModal'
 
-import fetchComics from '../actions/fetchComics'
+import { fetchComics } from '../../actions/feed'
 
 
 class Feed extends Component {
@@ -45,10 +45,6 @@ class Feed extends Component {
 
     render() {
         const comics = this.props.comics;
-        const comicList = comics.length ? (<ComicWall comics={comics} openModal={this.openModal} />) :
-            (<div className="container center">
-                Loading ...
-            </div>);
 
         const modalImage = this.state.displayImage ? (<ImageModal comic={this.state.openedComic} closeModal={this.closeModal} />) : (null);
 
@@ -66,9 +62,11 @@ class Feed extends Component {
                                     From rss feed.
                                 </h2>
                             </div>
-                            {comicList}
-                            <div className="container mx-auto">
-                                <button className="btn warning">Load More</button>
+                            
+                            { comics.length > 0 ? <ComicList comics={comics} openModal={this.openModal} /> : ('Loading ...') }
+
+                            <div className="container mx-auto text-center">
+                                <button className="btn btn-warning">Load More</button>
                             </div>
                         </div>
                     </div>

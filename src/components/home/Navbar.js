@@ -11,8 +11,8 @@ const NavBar = () => {
                 </Link>
                 <nav className="nav nav-head justify-content-center" >
                     <NavLink className="nav-link" exact to="/">Home</NavLink>
-                    <NavLink className="nav-link" to='/login'>Login</NavLink>
                     <NavLink className="nav-link" to='/signup'>Sign Up</NavLink>
+                    <NavLink className="nav-link" to='/signin'>Login</NavLink>
                 </nav>
             </div>
         </header>
