@@ -1,7 +1,13 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import {Link, NavLink } from 'react-router-dom';
 
+import { signOut } from '../../actions/auth'
+
 const TopNavbar = () => {
+
+    const dispatch = useDispatch();
+
     return (
         <nav className="navbar navbar-expand-md navbar-dark bg-info fixed-top ">
             <a className="navbar-brand" href="/">Webcomics</a>
@@ -15,7 +21,7 @@ const TopNavbar = () => {
                 <div className="navbar-nav ml-auto">
                     <NavLink className="nav-link" to="/feed">Home</NavLink>
                     <NavLink className="nav-link" to='/profile'>profile</NavLink>
-                    <Link className="nav-link" to='/logout'>Logout</Link>
+                    <Link className="nav-link" to='#' onClick={() => signOut(dispatch)}> Logout</Link>
                 </div>
             </div>
 

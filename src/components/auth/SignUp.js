@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
+
+import { signUp } from '../../actions/auth'
 
 import Navbar from '../home/Navbar'
 import Footer from '../home/Footer'
@@ -25,8 +29,7 @@ class SignUp extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         if ( !this.state.passwordDoNotMatch ){
-            console.log('signup in form: ', this.state);
-
+            this.props.signup(this.state);
         }
         else {
             console.log('PASSWORDS DO NOT MATCH');
@@ -51,6 +54,12 @@ class SignUp extends Component {
     }
 
     render() {
+
+        if ( this.props.is_authenticated ){
+            console.log('authenticated!')
+            return <Redirect to='/profile' />
+        }
+
         return (
             <div className="page-container signup-container">
                 <div className="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column text-center">
@@ -87,4 +96,17 @@ class SignUp extends Component {
     }
 }
 
-export default SignUp;
+const mapStateToProps = (state) => {
+    return {
+        alert: state.auth.authError,
+        is_authenticated: state.auth.is_authenticated
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return{
+        signup: (credentials) => signUp(dispatch, credentials)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

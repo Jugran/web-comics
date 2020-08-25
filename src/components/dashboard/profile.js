@@ -3,6 +3,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
+import TopNavbar from '../feed/TopNavbar'
+
 const Profile = () => {
 
     const is_authenticated = useSelector(state => state.auth.is_authenticated)
@@ -15,6 +17,7 @@ const Profile = () => {
 
     return (
         <div>
+            <TopNavbar />
             <h1 className="jumbotron text-center">
                 Hello !
             </h1>

@@ -1,6 +1,4 @@
 
-// TODO: add localStorage to store redux data
-
 export const signIn = (dispatch, credentials) => {
     fetch('auth/login', {
         method: 'POST',
@@ -28,5 +26,49 @@ export const signIn = (dispatch, credentials) => {
     .catch((error) => {
         // console.log('ERROR: ' + error);
         dispatch({type: 'LOGIN_FAILED', data: {error: error}})
+    });
+}
+
+export const signOut = (dispatch) => {
+    fetch('auth/logout', {
+        credentials: 'include'
+    })
+    .then(response => {
+        if (response.status === 201){
+            response.json().then(data => {
+                console.log('logout succesfull');
+                dispatch({type: 'LOGOUT_SUCCESS'});
+            })
+        }
+    })
+    .catch((error) => {
+        console.log('logout ERROR: ' + error);
+        // dispatch({type: 'LOGOUT_FAILED', data: {error: error}})
+    });
+}
+
+export const signUp = (dispatch, credentials) => {
+    fetch('auth/signup', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+    })
+    .then(response => {
+        if (response.status === 201){
+            console.log('signup successfull! ');
+            dispatch({type: 'SIGNUP_SUCCESS'});
+        }
+        else{
+            response.json().then(resp => {
+                dispatch({type: 'SIGNUP_FAILED', data: resp.data.message});
+            });
+        }
+    })
+    .catch((error) => {
+        console.log('signup ERROR: ' + error);
+        // dispatch({type: 'LOGOUT_FAILED', data: {error: error}})
     });
 }

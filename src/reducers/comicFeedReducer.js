@@ -1,7 +1,7 @@
 
 const initState = {
     comics: [{
-        "id": 1,
+        "id": 100,
         "name": "Loading Artist",
         "title": "Emailing it in",
         "comic_url": "https://loadingartist.com/comic/emailing-it-in/",
@@ -9,7 +9,7 @@ const initState = {
         "image_url": "https://loadingartist.com/wp-content/uploads/2020/05/2020-05-14-emailing-it-in.jpg"
     },
     {
-        "id": 2,
+        "id": 200,
         "name": "Loading Artist",
         "title": "Stuck Up",
         "comic_url": "https://loadingartist.com/comic/stuck-up/",

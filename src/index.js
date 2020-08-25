@@ -8,7 +8,14 @@ import { createStore } from 'redux';
 import rootReducer from './reducers/rootReducer';
 import { Provider } from 'react-redux';
 
-const store = createStore(rootReducer);
+import { saveState, loadState } from './actions/sessionStorage';
+
+const persistedState = loadState();
+const store = createStore(rootReducer, persistedState); 
+
+store.subscribe(() => {
+  saveState(store.getState());
+});
 
 ReactDOM.render(
   <React.StrictMode>
@@ -27,6 +34,7 @@ serviceWorker.unregister();
 
 
 // Done: singin/ signup components
-// TODO: login reducer (loggedin: boolean, user_id: int)
-// TODO: combine reducer
-// TODO: authentication
+// Done: login reducer (loggedin: boolean, user_id: int)
+// Done: combine reducer
+// Done: authentication
+// TODO: implement custom private routes
