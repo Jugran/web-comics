@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for webcomics project
+# Scrapy settings for scraper project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,10 +9,12 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'webcomics'
+from os import path
 
-SPIDER_MODULES = ['webcomics.spiders']
-NEWSPIDER_MODULE = 'webcomics.spiders'
+BOT_NAME = 'webcomics scraper'
+
+SPIDER_MODULES = ['scraper.spiders']
+NEWSPIDER_MODULE = 'scraper.spiders'
 
 DOWNLOAD_DELAY = 0.2
 CONCURRENT_REQUESTS_PER_DOMAIN = 16
@@ -27,10 +29,10 @@ CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #     },
 # }
 
-CONNECTION_DB_URI = 'sqlite:///comics.db'
+CONNECTION_DB_URI = 'sqlite:///' + path.join(path.dirname(path.dirname(__file__)), 'comics.db')
 
 ITEM_PIPELINES = {
-    'webcomics.pipelines.ComicDatabasePipeline' : 300
+    'scraper.pipelines.ComicDatabasePipeline': 300
 }
 
 
@@ -67,34 +69,34 @@ ROBOTSTXT_OBEY = True
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-#DEFAULT_REQUEST_HEADERS = {
+# DEFAULT_REQUEST_HEADERS = {
 #   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
 #   'Accept-Language': 'en',
-#}
+# }
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
+# SPIDER_MIDDLEWARES = {
 #    'webcomics.middlewares.CrawlerSpiderMiddleware': 543,
-#}
+# }
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
+# DOWNLOADER_MIDDLEWARES = {
 #    'webcomics.middlewares.CrawlerDownloaderMiddleware': 543,
-#}
+# }
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
-#EXTENSIONS = {
+# EXTENSIONS = {
 #    'scrapy.extensions.telnet.TelnetConsole': None,
-#}
+# }
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
+# ITEM_PIPELINES = {
 #    'webcomics.pipelines.CrawlerPipeline': 300,
-#}
+# }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

@@ -5,12 +5,13 @@ import re
 from scrapy.spiders import XMLFeedSpider
 from scrapy.utils.log import configure_logging, logging
 
-from webcomics.items import Comic
+from scraper.items import Comic
+
 
 class RssSpider(XMLFeedSpider):
     name = 'rss'
     itertag = 'item'
-    
+
     # configure_logging(install_root_handler=False)
     logging.basicConfig(
         filename='log.txt',
@@ -19,16 +20,16 @@ class RssSpider(XMLFeedSpider):
     )
 
     def start_requests(self):
-        urls = ['https://xkcd.com/rss.xml', 'http://www.berkeleymews.com/feed/', 'http://jamesofnotrades.com/feed', 
-        'http://loadingartist.com/feed/']
+        urls = ['https://xkcd.com/rss.xml', 'http://www.berkeleymews.com/feed/', 'http://jamesofnotrades.com/feed',
+                'http://loadingartist.com/feed/']
 
         for url in urls:
-            yield scrapy.Request(url=url, callback=self.parse)
-    
+            yield scrapy.Request(url=url)
+
     def parse_node(self, response, node):
         # self.logger.info('Hi, this is a <%s> node!: %s', self.itertag, ''.join(node.getall()))
         comic = Comic()
-        
+
         comic['name'] = response.xpath('channel/title/text()').get()
         comic['title'] = node.xpath('title/text()').get()
         comic['comic_url'] = node.xpath('link/text()').get()
@@ -39,7 +40,8 @@ class RssSpider(XMLFeedSpider):
             img_url = node.xpath(path).get()
 
             if img_url:
-                comic['description'] = node.xpath(path.replace('@src', '@title')).get()
+                comic['description'] = node.xpath(
+                    path.replace('@src', '@title')).get()
                 break
         else:
             # encoding issue, re-parse text
@@ -59,5 +61,3 @@ class RssSpider(XMLFeedSpider):
         comic['image_url'] = img_url
         # comic['image_url'] = [img_url]
         return comic
-
-

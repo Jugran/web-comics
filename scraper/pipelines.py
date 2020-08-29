@@ -8,8 +8,8 @@ from scrapy.exceptions import DropItem
 from scrapy.pipelines.images import ImagesPipeline
 from sqlalchemy.orm import sessionmaker
 
-from webcomics.models import connect_db, create_table
-from webcomics.models import Comic
+from scraper.models import connect_db, create_table
+from scraper.models import Comic
 
 
 class ComicDatabasePipeline:

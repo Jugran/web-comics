@@ -12,8 +12,10 @@ def connect_db(connection_string):
 
     return create_engine(connection_string)
 
+
 def create_table(engine):
     Base.metadata.create_all(engine)
+
 
 class Comic(Base):
     __tablename__ = 'comics'
@@ -29,12 +31,12 @@ class Comic(Base):
 
     def as_dict(self):
         _dict = {
-            'id' : self.id,
-            'name' : self.name,
-            'title' : self.title,
-            'url' : self.url,
-            'image_url' : self.image_url,
-            'description' : self.description,
+            'id': self.id,
+            'name': self.name,
+            'title': self.title,
+            'url': self.url,
+            'image_url': self.image_url,
+            'description': self.description,
         }
 
         return _dict
@@ -42,7 +44,7 @@ class Comic(Base):
     def __repr__(self):
         return f'<Name: {self.name}, Title: {self.title}, Image URL: {self.image_url}>'
 
-    
+
 class Source(Base):
     __tablename__ = 'sources'
 
@@ -54,6 +56,3 @@ class Source(Base):
 
     def __repr__(self):
         return f'<Name: {self.name}, URL: {self.url}, Feed URL: {self.feed_url}>'
-
- 
- 
