@@ -15,6 +15,7 @@ def latest():
     comics = comic_feed.get(start=0, n=50)
     return jsonify({'comics': comics})
 
+@login_required
 @feed.route('/refresh')
 def refresh():
     crawl()
