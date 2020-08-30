@@ -1,0 +1,59 @@
+{% extends 'comics/base.html' %} {% block content %}
+<div class="comic-container container" id="comic-container">
+  <div class="jumbotron text-left p-3">
+    <h1 class="display-4">
+      Latest Comics
+    </h1>
+    <h2 class="lead">
+      From rss feed.
+    </h2>
+  </div>
+
+  <div class="card-columns">
+    {% for comic in comics %}
+    <div id="comics-thumbnail" class="card">
+      <img
+        src="{{comic.image_url}}"
+        id="{{ comic.id }}"
+        class="card-img-top"
+        alt="{{ comic.title }}"
+        onclick="openModal(this)"
+      />
+
+      <div class="card-body">
+        <h3 class="card-title">{{ comic.title }}</h3>
+        <p class="card-text">{{ comic.description }}</p>
+
+        <!-- <a href="{{ url_for('viewer.comic', id=comic.id) }}" class="stretched-link"></a> -->
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div id="image-viewer" class="modal-viewer overflow-hidden">
+  <div id="modal-background" class="modal-background" onclick="closeModal()"></div>
+
+    <button id="close-button" type="button" class="close text-white" aria-label="Close" onclick="closeModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+
+    <div class="modal-content-container m-auto p-sm-3">
+        <div class="image-wrapper">
+        <img id="modal-image" class="img-fluid" />
+        </div>
+
+        <div class="comic-info card text-white bg-info mb-3 mx-auto w-100">
+          <div id="comic-name" class="card-header"></div>
+          <div class="card-body">
+            <h5 id="comic-title" class="card-title"></h5>
+            <p id="comic-description"class="card-text"></p>
+          </div>
+        </div>
+<!-- TODO: Add title/caption text/card in image modal-->
+        <!-- Modal Caption (Image Text) -->
+        <!-- <div id="caption" class="caption is-overlay"></div> -->
+    </div>
+
+  {% endblock %}
+</div>
