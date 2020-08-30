@@ -1,21 +1,6 @@
 
 const initState = {
-    comics: [{
-        "id": 100,
-        "name": "Loading Artist",
-        "title": "Emailing it in",
-        "comic_url": "https://loadingartist.com/comic/emailing-it-in/",
-        "description": null,
-        "image_url": "https://loadingartist.com/wp-content/uploads/2020/05/2020-05-14-emailing-it-in.jpg"
-    },
-    {
-        "id": 200,
-        "name": "Loading Artist",
-        "title": "Stuck Up",
-        "comic_url": "https://loadingartist.com/comic/stuck-up/",
-        "description": null,
-        "image_url": "https://loadingartist.com/wp-content/uploads/2020/05/2020-05-07-stuck-up.jpg"
-    }]
+    comics: []
 };
 
 const comicFeedReducer = (state=initState, action) => {
@@ -24,7 +9,7 @@ const comicFeedReducer = (state=initState, action) => {
         case 'FETCH_COMICS':
             return {
                 ...state,
-                comics : [...state.comics, ...action.comics]
+                comics : [...action.comics]
             };
 
         default:

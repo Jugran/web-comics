@@ -1,11 +1,11 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 
 import ComicList from './ComicList'
 import TopNavbar from './TopNavbar'
 import ImageModal from './ImageModal'
+import Footer from './Footer'
 
 import { fetchComics } from '../../actions/feed'
 
@@ -46,10 +46,6 @@ class Feed extends Component {
 
     render() {
 
-        if ( !this.props.is_authenticated ){
-            return <Redirect to='/login' />
-        }
-
         const comics = this.props.comics;
 
         const modalImage = this.state.displayImage ? (<ImageModal comic={this.state.openedComic} closeModal={this.closeModal} />) : (null);
@@ -71,11 +67,12 @@ class Feed extends Component {
                             
                             { comics.length > 0 ? <ComicList comics={comics} openModal={this.openModal} /> : ('Loading ...') }
 
-                            <div className="container mx-auto text-center">
+                            {/* <div className="container mx-auto text-center">
                                 <button className="btn btn-warning">Load More</button>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
+                    <Footer />
                 </div>
                 {modalImage}
             </div>

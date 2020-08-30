@@ -1,8 +1,8 @@
 import React from 'react'
 
-const ComicCard = ({comic}) => {
+const ComicCard = ({comic, openModal}) => {
     return (
-        <div className="card">
+        <div className="card" onClick={() => openModal(comic)}>
             <div className="thumbnail-container">
                 <img
                     src={ comic.image_url }

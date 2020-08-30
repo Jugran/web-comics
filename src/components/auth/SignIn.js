@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import Navbar from '../home/Navbar'
@@ -33,11 +32,6 @@ class SignIn extends Component {
     }
 
     render() {
-
-        if ( this.props.is_authenticated ){
-            console.log('authenticated!')
-            return <Redirect to='/profile' />
-        }
 
         return (
             <div className="page-container signin-container">

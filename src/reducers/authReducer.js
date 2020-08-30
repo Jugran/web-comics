@@ -14,6 +14,7 @@ const authReducer = (state = initialState, action) => {
                 is_authenticated: true
             }
         case 'LOGIN_FAILED':
+        case 'SIGNUP_FAILED':
             return {
                 ...state,
                 user_id: null,

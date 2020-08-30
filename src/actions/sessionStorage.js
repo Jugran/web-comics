@@ -1,7 +1,7 @@
 
 export const loadState = () => {
     try{
-        const serializableState = sessionStorage.getItem('state');
+        const serializableState = sessionStorage.getItem('authState');
 
         if (serializableState === null){
             return undefined;
@@ -15,8 +15,11 @@ export const loadState = () => {
 
 export const saveState = (state) => {
     try{
-        const serializedState = JSON.stringify(state);
-        sessionStorage.setItem('state', serializedState)
+        const authState = {
+            auth: { ...state.auth, authError: null}
+        }
+        const serializedState = JSON.stringify(authState);
+        sessionStorage.setItem('authState', serializedState)
     }
     catch(err){
         console.error(err);

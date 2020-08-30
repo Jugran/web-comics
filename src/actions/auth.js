@@ -63,7 +63,8 @@ export const signUp = (dispatch, credentials) => {
         }
         else{
             response.json().then(resp => {
-                dispatch({type: 'SIGNUP_FAILED', data: resp.data.message});
+                dispatch({type: 'SIGNUP_FAILED', data: {error: resp.message}});
+                console.log('resp JSON ', resp)
             });
         }
     })

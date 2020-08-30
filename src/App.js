@@ -1,5 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Switch } from 'react-router-dom'
+
+import { PrivateRoute, PublicRoute } from './components/customRoutes'
 
 import Home from './components/home/Home'
 import Feed from './components/feed/Feed'
@@ -15,12 +17,12 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path='/' component={Home}/>
-        <Route path='/signup' component={SignUp}/>
-        <Route path='/login' component={SignIn}/>
-        <Route path='/demo' component={Feed}/>
-        <Route path='/feed' component={Feed}/>
-        <Route path='/profile' component={Profile}/>
+        <PublicRoute exact path='/' component={Home}/>
+        <PublicRoute path='/signup' component={SignUp}/>
+        <PublicRoute path='/login' component={SignIn}/>
+        <PublicRoute path='/demo' component={Feed}/>
+        <PrivateRoute path='/feed' component={Feed}/>
+        <PrivateRoute path='/profile' component={Profile}/>
       </Switch>
     </BrowserRouter>
     

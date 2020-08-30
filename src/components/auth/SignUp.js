@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Redirect } from 'react-router-dom'
 
 import { signUp } from '../../actions/auth'
 
@@ -55,11 +54,6 @@ class SignUp extends Component {
 
     render() {
 
-        if ( this.props.is_authenticated ){
-            console.log('authenticated!')
-            return <Redirect to='/profile' />
-        }
-
         return (
             <div className="page-container signup-container">
                 <div className="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column text-center">
@@ -69,7 +63,7 @@ class SignUp extends Component {
                 
                         { this.props.alert ? (
                             <div className="alert alert-warning" role="alert">
-                                    { this.props.alert }. Go to <Link to='/signup'>login page</Link>.
+                                    { this.props.alert }. Go to <Link to='/login'>login page</Link>.
                             </div>
                         ) : (null) }
                 

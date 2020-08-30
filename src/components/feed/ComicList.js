@@ -6,7 +6,7 @@ const ComicList = ({comics, openModal}) => {
 
     return (
         <div className="card-columns">
-            { comics && comics.map( comic => <ComicCard key={comic.id} comic={comic} onClick={() => openModal(comic)} />)}
+            { comics && comics.map( comic => <ComicCard comic={comic} openModal={openModal} key={comic.id}/>)}
         </div>
     )
 }
